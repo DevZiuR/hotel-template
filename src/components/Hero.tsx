@@ -1,79 +1,112 @@
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Star, Shield, Zap, Phone } from "lucide-react";
-import heroBg from "@/assets/gallery-7.jpeg";
+import { Calendar, ChevronDown, Users } from "lucide-react";
+import { useState } from "react";
 
 const Hero = () => {
-  const scrollToContact = () => {
-    const element = document.querySelector("#contact");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  const [checkIn, setCheckIn] = useState("");
+  const [checkOut, setCheckOut] = useState("");
+  const [guests, setGuests] = useState("1 Huésped");
 
-  const scrollToServices = () => {
-    const element = document.querySelector("#services");
+  const handleCheckAvailability = () => {
+    const element = document.getElementById("contact");
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   return (
-    <section 
-      id="home" 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-cover bg-center"
-      style={{ backgroundImage: `url('https://i.imgur.com/ZLQqX4e.jpeg')` }}
-    >
-      {/* Darker overlay for better text visibility */}
-      <div className="absolute inset-0 bg-black/80" />
-      
-      {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 text-center">
-        <div className="max-w-4xl mx-auto animate-fade-in">
-          {/* Badge */}
-          <div className="inline-flex items-center space-x-2 bg-black/50 backdrop-blur-sm border border-primary/50 rounded-full px-6 py-3 mb-8">
-            <Star className="h-5 w-5 text-primary" />
-            <span className="text-foreground font-medium font-inter">Full vehicle wraps from <span className="text-primary font-italic">$1,500</span> • Free Quotes</span>
+    <section id="home" className="relative h-screen min-h-[700px] flex flex-col justify-center items-center overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="https://aquavisuites.com.ve/wp-content/uploads/2021/01/Hotel-Aqua-Vi-42-07588-scaled.jpg"
+          alt="Aqua Vi Marina Hotel"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/30" />
+      </div>
+
+      {/* Main Content */}
+      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto mt-32 md:mt-20">
+        <h1 className="text-[42px] md:text-[64px] lg:text-[70px] text-white font-serif leading-[1.1] mb-6 drop-shadow-lg">
+          Un Santuario Privado<br />
+          en el <span className="italic">Corazón de Mochima</span>
+        </h1>
+
+        <p className="text-lg md:text-xl text-white/90 font-sans max-w-2xl mx-auto leading-relaxed drop-shadow-md">
+          Diseñado para quienes buscan más que un destino<br className="hidden md:block" />
+          — una experiencia del alma.
+        </p>
+      </div>
+
+      {/* Booking Form */}
+      <div className="relative md:absolute md:bottom-12 md:left-1/2 md:transform md:-translate-x-1/2 z-20 w-full max-w-4xl px-4 mt-16 md:mt-0">
+        <div className="bg-white rounded-lg shadow-2xl flex flex-col md:flex-row items-stretch overflow-hidden">
+
+          {/* Check-in */}
+          <div className="flex-1 border-b md:border-b-0 md:border-r border-gray-200 p-4 md:p-6">
+            <label className="text-[10px] font-bold tracking-[0.15em] text-gray-500 uppercase block mb-2">
+              Llegada
+            </label>
+            <div className="flex items-center justify-between">
+              <input
+                type="date"
+                value={checkIn}
+                onChange={(e) => setCheckIn(e.target.value)}
+                className="text-gray-800 text-base font-sans bg-transparent border-none outline-none w-full cursor-pointer"
+                placeholder="Elegir fecha"
+              />
+              <Calendar className="w-5 h-5 text-gray-400 flex-shrink-0" />
+            </div>
           </div>
 
-          {/* Main Headline */}
-          <h1 className="text-4xl md:text-6xl font-bold font-playfair text-white mb-6 leading-tight">
-            <span className="text-primary">Kissimmee's </span> Expert Vehicle Wraps, Tints & Decals
-          </h1>
-
-          {/* Subheading */}
-          <p className="text-lg md:text-xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed font-inter">
-          <span className="text-primary">Protect your investment</span> and express your unique style with our expert wraps, precise tints, and flawless decals. Serving Kissimmee with pride and <span className="text-primary">unparalleled quality.</span></p>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button 
-              size="lg" 
-              className="btn-primary text-lg px-6 py-6 animate-glow-pulse hover:bg-primary/90"
-              onClick={scrollToContact}
-            >
-              <Phone className="ml-1 h-5 w-5" />
-              Call Now
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="btn-outline text-lg px-6 py-6 text-white/90"
-              onClick={scrollToServices}
-            >
-              View Services
-            </Button>
+          {/* Check-out */}
+          <div className="flex-1 border-b md:border-b-0 md:border-r border-gray-200 p-4 md:p-6">
+            <label className="text-[10px] font-bold tracking-[0.15em] text-gray-500 uppercase block mb-2">
+              Salida
+            </label>
+            <div className="flex items-center justify-between">
+              <input
+                type="date"
+                value={checkOut}
+                onChange={(e) => setCheckOut(e.target.value)}
+                className="text-gray-800 text-base font-sans bg-transparent border-none outline-none w-full cursor-pointer"
+                placeholder="Elegir fecha"
+              />
+              <Calendar className="w-5 h-5 text-gray-400 flex-shrink-0" />
+            </div>
           </div>
+
+          {/* Room/Guests */}
+          <div className="flex-1 border-b md:border-b-0 md:border-r border-gray-200 p-4 md:p-6">
+            <label className="text-[10px] font-bold tracking-[0.15em] text-gray-500 uppercase block mb-2">
+              Guests
+            </label>
+            <div className="flex items-center justify-between">
+              <select
+                value={guests}
+                onChange={(e) => setGuests(e.target.value)}
+                className="text-gray-800 text-base font-sans bg-transparent border-none outline-none w-full cursor-pointer appearance-none"
+              >
+                <option value="1 Huésped">1 Adulto</option>
+                <option value="2 Huéspedes">2 Adultos</option>
+                <option value="3 Huéspedes">3 Adultos</option>
+                <option value="4 Huéspedes">4 Adultos</option>
+                <option value="5+ Huéspedes">5+ Adultos</option>
+              </select>
+              <ChevronDown className="w-5 h-5 text-gray-400 flex-shrink-0" />
+            </div>
+          </div>
+
+          {/* CTA Button */}
+          <button
+            onClick={handleCheckAvailability}
+            className="bg-[#E6D5E9] hover:bg-[#d4c3d7] text-black font-bold text-xs md:text-sm tracking-[0.15em] uppercase px-6 md:px-10 py-6 transition-colors duration-300 whitespace-nowrap"
+          >
+            Verificar Disponibilidad
+          </button>
 
         </div>
       </div>
-
-      {/* Scroll Indicator 
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-primary/50 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-primary rounded-full mt-2 animate-pulse"></div>
-        </div>
-      </div>
-      */}
     </section>
   );
 };
