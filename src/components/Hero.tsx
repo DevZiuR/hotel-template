@@ -26,7 +26,7 @@ const Hero = () => {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto mt-32 md:mt-20">
+      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto mt-48 md:mt-20">
         <h1 className="text-[42px] md:text-[64px] lg:text-[70px] text-white font-serif leading-[1.1] mb-6 drop-shadow-lg">
           Un Santuario Privado<br />
           en el <span className="italic">Corazón de Mochima</span>
